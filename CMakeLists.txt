@@ -4,7 +4,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 # project name
-project(cpp_project VERSION 1.0)
+project(A3_UDP_PCARS2_AxCancel VERSION 1.0)
 
 # specify standard cxx standard
 set(CMAKE_CXX_STANDARD 11)
@@ -20,4 +20,4 @@ file(GLOB_RECURSE HEADERS "include/*.h")
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 
 # make a project
-add_executable(cpp_project ${SOURCES} ${HEADERS})
+add_executable(A3_UDP_PCARS2_AxCancel ${SOURCES} ${HEADERS})
