@@ -4,9 +4,21 @@
     <ClCompile Include="C:\git\chair-canceller\a3-udp-chair-cancel-axes\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\AxCancel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\git\chair-canceller\a3-udp-chair-cancel-axes\include\main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\AxCancel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

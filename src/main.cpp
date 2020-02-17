@@ -1,6 +1,8 @@
 #include "../include/main.h"
 
+
 void main(void)
 {
-	std::cout << "hello there" << std::endl;
+	Util::KillProcessByName("notepad.exe");
+	Util::Log("hello %d %s %f", 50, "there", 3.1415f);
 }

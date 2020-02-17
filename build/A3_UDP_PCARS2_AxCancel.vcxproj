@@ -316,7 +316,11 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\AxCancel.cpp" />
+    <ClCompile Include="..\src\Util.cpp" />
     <ClCompile Include="C:\git\chair-canceller\a3-udp-chair-cancel-axes\src\main.cpp" />
+    <ClInclude Include="..\include\AxCancel.h" />
+    <ClInclude Include="..\include\Util.h" />
     <ClInclude Include="C:\git\chair-canceller\a3-udp-chair-cancel-axes\include\main.h" />
   </ItemGroup>
   <ItemGroup>
