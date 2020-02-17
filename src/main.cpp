@@ -3,6 +3,9 @@
 
 void main(void)
 {
-	Util::KillProcessByName("notepad.exe");
-	Util::Log("hello %d %s %f", 50, "there", 3.1415f);
+	//Create a new axis cancel program
+	AxisCancelProgram* program = new AxisCancelProgram("none");
+
+	//Delete it 
+	delete program;
 }
