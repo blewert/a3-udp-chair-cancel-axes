@@ -1,36 +1,54 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\git\chair-canceller\a3-udp-chair-cancel-axes\src\main.cpp">
+    <ClCompile Include="D:\git\a3-udp-chair-cancel-axes\src\AxCancel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\AxCancel.cpp">
+    <ClCompile Include="D:\git\a3-udp-chair-cancel-axes\src\Util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Util.cpp">
+    <ClCompile Include="D:\git\a3-udp-chair-cancel-axes\src\ams\AMSPacket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\git\a3-udp-chair-cancel-axes\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ams\AMSNetwork.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Vector3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\git\chair-canceller\a3-udp-chair-cancel-axes\include\main.h">
+    <ClInclude Include="D:\git\a3-udp-chair-cancel-axes\include\AxCancel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\AxCancel.h">
+    <ClInclude Include="D:\git\a3-udp-chair-cancel-axes\include\Util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\Util.h">
+    <ClInclude Include="D:\git\a3-udp-chair-cancel-axes\include\ams\AMSPacket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\git\a3-udp-chair-cancel-axes\include\main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ams\AMSNetwork.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Vector3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\git\chair-canceller\a3-udp-chair-cancel-axes\CMakeLists.txt" />
+    <CustomBuild Include="D:\git\a3-udp-chair-cancel-axes\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{DC0CDCEC-9BB3-3C99-A226-1E7A989E9C4D}</UniqueIdentifier>
+      <UniqueIdentifier>{D6436964-EF5E-39F3-BC58-C3B8E917C3DA}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{DDBA4576-E579-305E-B94B-CD1C02716DC1}</UniqueIdentifier>
+      <UniqueIdentifier>{5D1D5D12-394A-3015-9FB4-3476DFE9D918}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

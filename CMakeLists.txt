@@ -1,7 +1,7 @@
 ## cmakelists_template
 
-# run only on >3.1
-cmake_minimum_required(VERSION 3.10)
+# run only on >3.9
+cmake_minimum_required(VERSION 3.9)
 
 # project name
 project(A3_UDP_PCARS2_AxCancel VERSION 1.0)
