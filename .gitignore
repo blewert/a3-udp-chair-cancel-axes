@@ -354,3 +354,4 @@ MigrationBackup/
 
 # added stuff (for this cmake project)
 .build/
+.out/
