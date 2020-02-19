@@ -4,28 +4,25 @@ using namespace AMSA3;
 const char* AMSA3::AxisCancelProgram::TELEMETRY_WRITER_EXE_NAME = "project-cars-telemetry-writer.exe";
 
 
-//
-// constructors
-//
 
 AMSA3::AxisCancelProgram::AxisCancelProgram(AxisCancelMode operatingMode) : operatingMode(operatingMode)
 {
 	//First, set console control callback
 	SetConsoleCtrlHandler(ConsoleControlCallback, TRUE);
+
+	//Then, make the UDP client
+	this->SetupUDPClient();
 }
 
 //Just call other constructor
 AMSA3::AxisCancelProgram::AxisCancelProgram(const std::string& operatingMode) : AxisCancelProgram(this->GetModeFromName(operatingMode)) {}
 
-//Empty destructor
-AMSA3::AxisCancelProgram::~AxisCancelProgram(void) { }
-
-
-
-
-//
-// functions
-//
+//Destructor
+AMSA3::AxisCancelProgram::~AxisCancelProgram(void) 
+{
+	//Clean up
+	delete udpClient;
+}
 
 AxisCancelMode AMSA3::AxisCancelProgram::GetModeFromName(const std::string& name) const
 {
@@ -37,6 +34,25 @@ AxisCancelMode AMSA3::AxisCancelProgram::GetModeFromName(const std::string& name
 
 	//Otherwise throw an error -- something funky is happening
 	else throw new std::exception("Unrecognised operating mode specified.");
+}
+
+void AMSA3::AxisCancelProgram::SetupUDPClient(void)
+{
+	//Get the IP, port and tick rate
+	auto ip = Network::Settings.IP;
+	auto port = Network::Settings.PORT;
+	auto tickRate = Network::Settings.TICK_SEND_RATE;
+
+	//Set up the UDP client
+	this->udpClient = new Network::UDPClient(ip, port, tickRate);
+}
+
+void AMSA3::AxisCancelProgram::Update(void)
+{
+	if (this->udpClient->NeedsUpdate())
+	{
+		printf("boom, send\n");
+	}
 }
 
 

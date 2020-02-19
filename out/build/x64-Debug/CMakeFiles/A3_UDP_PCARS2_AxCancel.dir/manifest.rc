@@ -1,0 +1,2 @@
+#pragma code_page(65001)
+1 /* CREATEPROCESS_MANIFEST_RESOURCE_ID */ 24 /* RT_MANIFEST */ "C:/git/github/a3-udp-chair-cancel-axes/out/build/x64-Debug/CMakeFiles/A3_UDP_PCARS2_AxCancel.dir/embed.manifest"

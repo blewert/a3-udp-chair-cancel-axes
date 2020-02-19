@@ -1,0 +1,59 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.9"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "A3_UDP_PCARS2_AxCancel",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "A3_UDP_PCARS2_AxCancel::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-A3_UDP_PCARS2_AxCancel-Debug-5f60ad95775cb2f4bec5.json",
+					"name" : "A3_UDP_PCARS2_AxCancel",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/git/github/a3-udp-chair-cancel-axes/out/build/x64-Debug",
+		"source" : "C:/git/github/a3-udp-chair-cancel-axes"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}

@@ -1,54 +1,60 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="D:\git\a3-udp-chair-cancel-axes\src\AxCancel.cpp">
+    <ClCompile Include="C:\git\github\a3-udp-chair-cancel-axes\src\AxCancel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\git\a3-udp-chair-cancel-axes\src\Util.cpp">
+    <ClCompile Include="C:\git\github\a3-udp-chair-cancel-axes\src\Util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\git\a3-udp-chair-cancel-axes\src\ams\AMSPacket.cpp">
+    <ClCompile Include="C:\git\github\a3-udp-chair-cancel-axes\src\Vector3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\git\a3-udp-chair-cancel-axes\src\main.cpp">
+    <ClCompile Include="C:\git\github\a3-udp-chair-cancel-axes\src\ams\AMSNetwork.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\ams\AMSNetwork.cpp">
+    <ClCompile Include="C:\git\github\a3-udp-chair-cancel-axes\src\ams\AMSPacket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Vector3.cpp">
+    <ClCompile Include="C:\git\github\a3-udp-chair-cancel-axes\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ams\UDPClient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="D:\git\a3-udp-chair-cancel-axes\include\AxCancel.h">
+    <ClInclude Include="C:\git\github\a3-udp-chair-cancel-axes\include\AxCancel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\git\a3-udp-chair-cancel-axes\include\Util.h">
+    <ClInclude Include="C:\git\github\a3-udp-chair-cancel-axes\include\Util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\git\a3-udp-chair-cancel-axes\include\ams\AMSPacket.h">
+    <ClInclude Include="C:\git\github\a3-udp-chair-cancel-axes\include\Vector3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\git\a3-udp-chair-cancel-axes\include\main.h">
+    <ClInclude Include="C:\git\github\a3-udp-chair-cancel-axes\include\ams\AMSNetwork.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\ams\AMSNetwork.h">
+    <ClInclude Include="C:\git\github\a3-udp-chair-cancel-axes\include\ams\AMSPacket.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\Vector3.h">
+    <ClInclude Include="C:\git\github\a3-udp-chair-cancel-axes\include\main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ams\UDPClient.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="D:\git\a3-udp-chair-cancel-axes\CMakeLists.txt" />
+    <CustomBuild Include="C:\git\github\a3-udp-chair-cancel-axes\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{D6436964-EF5E-39F3-BC58-C3B8E917C3DA}</UniqueIdentifier>
+      <UniqueIdentifier>{2404E142-4E2C-3924-B8DE-9EA6B9B0F613}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{5D1D5D12-394A-3015-9FB4-3476DFE9D918}</UniqueIdentifier>
+      <UniqueIdentifier>{2EA936F4-8B50-3D15-A2B9-79E8B9485E57}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -1,0 +1,8 @@
+# ninja log v5
+12	536	603841736	CMakeFiles/A3_UDP_PCARS2_AxCancel.dir/src/ams/AMSNetwork.cpp.obj	1c1b6d5ce80ce7b6
+1	819	603841736	CMakeFiles/A3_UDP_PCARS2_AxCancel.dir/src/Vector3.cpp.obj	e14f783187bd0dcb
+8	1085	603841736	CMakeFiles/A3_UDP_PCARS2_AxCancel.dir/src/Util.cpp.obj	1a66fc4a3e29918e
+17	1254	603841737	CMakeFiles/A3_UDP_PCARS2_AxCancel.dir/src/ams/AMSPacket.cpp.obj	5862c5dcc1cad6b7
+5	1258	603841737	CMakeFiles/A3_UDP_PCARS2_AxCancel.dir/src/AxCancel.cpp.obj	4f3bbc432a3f3470
+24	1467	603841737	CMakeFiles/A3_UDP_PCARS2_AxCancel.dir/src/main.cpp.obj	5ced19157887257b
+1467	1829	603841737	A3_UDP_PCARS2_AxCancel.exe	4c7459dca1f379f9

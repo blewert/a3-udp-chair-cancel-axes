@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="D:\git\a3-udp-chair-cancel-axes\build\CMakeFiles\02a11f8c427046702bca0d98a36a39b8\generate.stamp.rule">
+    <CustomBuild Include="C:\git\github\a3-udp-chair-cancel-axes\build\CMakeFiles\fd43ba57bc08bb92fbc43bf257cb83dc\generate.stamp.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{9D206A2F-7B72-378D-BB29-74E6F440BC4C}</UniqueIdentifier>
+      <UniqueIdentifier>{025A9200-D69D-34A0-B9EF-BC3AD95CBCF3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

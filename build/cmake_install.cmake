@@ -1,4 +1,4 @@
-# Install script for directory: D:/git/a3-udp-chair-cancel-axes
+# Install script for directory: C:/git/github/a3-udp-chair-cancel-axes
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "D:/git/a3-udp-chair-cancel-axes/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/git/github/a3-udp-chair-cancel-axes/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
