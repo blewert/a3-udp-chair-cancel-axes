@@ -4,7 +4,6 @@ using namespace AMSA3;
 const char* AMSA3::AxisCancelProgram::TELEMETRY_WRITER_EXE_NAME = "project-cars-telemetry-writer.exe";
 
 
-
 AMSA3::AxisCancelProgram::AxisCancelProgram(AxisCancelMode operatingMode) : operatingMode(operatingMode)
 {
 	//First, set console control callback
@@ -12,6 +11,9 @@ AMSA3::AxisCancelProgram::AxisCancelProgram(AxisCancelMode operatingMode) : oper
 
 	//Then, make the UDP client
 	this->SetupUDPClient();
+
+	//Now, create the game (block until it is found)
+	projectCars = new PCars::PCarsGame();
 }
 
 //Just call other constructor
@@ -22,6 +24,8 @@ AMSA3::AxisCancelProgram::~AxisCancelProgram(void)
 {
 	//Clean up
 	delete udpClient;
+	delete projectCars;
+	delete packet;
 }
 
 AxisCancelMode AMSA3::AxisCancelProgram::GetModeFromName(const std::string& name) const
@@ -51,11 +55,36 @@ void AMSA3::AxisCancelProgram::Update(void)
 {
 	if (this->udpClient->NeedsUpdate())
 	{
-		const char* data = "hello there mr";
-		this->udpClient->sendData(data, strlen(data));
+		//Player is not ingame? Then skip!
+		if (!projectCars->IsPlayerInGame())
+			return;
 
-		printf("update");
+		//Get vector of each
+		Vector3 accel = projectCars->GetLocalAccel();
+		Vector3 lvel  = projectCars->GetLocalVelocity();
+		Vector3 wvel  = projectCars->GetWorldVelocity();
+
+		//Build the packet, send it
+		this->SendPacket(accel, lvel, wvel);
 	}
+}
+
+void AMSA3::AxisCancelProgram::SendPacket(const Vector3& accel, const Vector3& localVel, const Vector3& worldVel) const
+{
+	//Scale each by multiplier (e.g. -1 for negation, 0 for cancel, etc.)
+	accel     *= this->axisScale;
+	localVel  *= this->axisScale;
+	worldVel  *= this->axisScale;
+
+	//
+
+	//Copy all components
+	memcpy(packet->localVel,   &localVel.data, sizeof(float) * 3);
+	memcpy(packet->globalVel,  &worldVel.data, sizeof(float) * 3);
+	memcpy(packet->localAccel, &accel.data,    sizeof(float) * 3);
+
+	//Return a copy of the packet
+	udpClient->sendData(packet);
 }
 
 

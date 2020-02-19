@@ -18,11 +18,25 @@ Vector3 AMSA3::Math::Vector3::operator*(const float rhs) const
 	return Vector3(this->data.x * rhs, this->data.y * rhs, this->data.z * rhs);
 }
 
+Vector3 AMSA3::Math::Vector3::operator*(const Vector3& rhs) const
+{
+	return Vector3(this->data.x * rhs.data.x, this->data.y * rhs.data.y, this->data.z * rhs.data.z);
+}
+
 Vector3& AMSA3::Math::Vector3::operator*=(const float rhs)
 {
 	this->data.x *= rhs;
 	this->data.y *= rhs;
 	this->data.z *= rhs;
+
+	return *this;
+}
+
+Vector3& AMSA3::Math::Vector3::operator*=(const Vector3& rhs)
+{
+	this->data.x *= rhs.data.x;
+	this->data.y *= rhs.data.y;
+	this->data.z *= rhs.data.z;
 
 	return *this;
 }

@@ -27,6 +27,7 @@ namespace AMSA3
 			Vector3(float x, float y, float z);
 
 			Vector3 operator*(const float rhs) const;
+			Vector3 operator*(const Vector3& rhs) const;
 			Vector3 operator/(const float rhs) const;
 			Vector3 operator+(const float rhs) const;
 			Vector3 operator+(const Vector3& rhs) const;
@@ -34,6 +35,7 @@ namespace AMSA3
 			Vector3 operator-(const Vector3& rhs) const;
 
 			Vector3& operator*=(const float rhs);
+			Vector3& operator*=(const Vector3& rhs);
 			Vector3& operator/=(const float rhs);
 			Vector3& operator+=(const float rhs);
 			Vector3& operator+=(const Vector3& rhs);
