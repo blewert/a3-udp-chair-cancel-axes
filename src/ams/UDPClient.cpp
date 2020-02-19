@@ -106,3 +106,13 @@ void UDPClient::InitialiseWinsock(void)
 	send(this->sock, "ping", 4, 0);
 }
 
+void AMSA3::Network::UDPClient::sendData(const char* packet, unsigned int length) const
+{
+	send(this->sock, packet, length, 0);
+}
+
+void AMSA3::Network::UDPClient::sendData(Packet::UDPPacketData* packet) const
+{
+	send(this->sock, (char*)packet, sizeof(Packet::UDPPacketData), 0);
+}
+

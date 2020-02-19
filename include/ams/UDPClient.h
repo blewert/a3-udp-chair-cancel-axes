@@ -4,6 +4,7 @@
 #include <ws2tcpip.h>
 #include <windows.h>
 #include <string>
+#include "AMSPacket.h"
 
 // Need to link with Ws2_32.lib, Mswsock.lib, and Advapi32.lib
 #pragma comment (lib, "ws2_32")
@@ -23,6 +24,9 @@ namespace AMSA3
 
 			bool NeedsUpdate(void);
 
+			void sendData(const char* packet, unsigned int length) const;
+			void sendData(Packet::UDPPacketData* packet) const;
+
 		private:
 			std::string ip;
 			int port;
@@ -32,22 +36,6 @@ namespace AMSA3
 
 			void InitialiseWinsock(void);
 
-			//bool update(void);
-			//void sendData(SimphynityUDPPacket* packet);
-			//void initWinsock(void);
-
-			/*SOCKET sock;
-
-			struct addrinfo* result = NULL,
-				* ptr = NULL,
-				hints;*/
-
-			/*int ticks;
-			int tick_rate;*/
 		};
 	}
 }
-//
-//#include <string>
-//#include "Simphynity.h"
-//

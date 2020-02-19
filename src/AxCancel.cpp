@@ -51,7 +51,10 @@ void AMSA3::AxisCancelProgram::Update(void)
 {
 	if (this->udpClient->NeedsUpdate())
 	{
-		printf("boom, send\n");
+		const char* data = "hello there mr";
+		this->udpClient->sendData(data, strlen(data));
+
+		printf("update");
 	}
 }
 
