@@ -69,14 +69,16 @@ void AMSA3::AxisCancelProgram::Update(void)
 	}
 }
 
-void AMSA3::AxisCancelProgram::SendPacket(const Vector3& accel, const Vector3& localVel, const Vector3& worldVel) const
+void AMSA3::AxisCancelProgram::SendPacket(Vector3& accel, Vector3& localVel, Vector3& worldVel) const
 {
 	//Scale each by multiplier (e.g. -1 for negation, 0 for cancel, etc.)
 	accel     *= this->axisScale;
 	localVel  *= this->axisScale;
 	worldVel  *= this->axisScale;
 
-	//
+	//Local/world velocity needs to be normalised (200mph is the max)
+	localVel /= (MPH_TO_MS * 200.0f);
+	worldVel /= (MPH_TO_MS * 200.0f);
 
 	//Copy all components
 	memcpy(packet->localVel,   &localVel.data, sizeof(float) * 3);

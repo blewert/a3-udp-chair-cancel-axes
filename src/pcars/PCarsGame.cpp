@@ -17,17 +17,17 @@ PCars::PCarsGame::~PCarsGame(void)
 	delete memory;
 }
 
-inline Vector3 PCars::PCarsGame::GetLocalVelocity(void) const 
+Vector3 PCars::PCarsGame::GetLocalVelocity(void) const 
 {
 	return Vector3(memory->game->mLocalVelocity[0], memory->game->mLocalVelocity[1], memory->game->mLocalVelocity[2]);
 }
 
-inline Vector3 PCars::PCarsGame::GetLocalAccel(void) const
+Vector3 PCars::PCarsGame::GetLocalAccel(void) const
 {
 	return Vector3(memory->game->mLocalAcceleration[0], memory->game->mLocalAcceleration[1], memory->game->mLocalAcceleration[2]);
 }
 
-inline Vector3 PCars::PCarsGame::GetWorldVelocity(void) const
+Vector3 PCars::PCarsGame::GetWorldVelocity(void) const
 {
 	return Vector3(memory->game->mWorldVelocity[0], memory->game->mWorldVelocity[1], memory->game->mWorldVelocity[2]);
 }

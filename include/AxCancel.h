@@ -37,7 +37,7 @@ namespace AMSA3
 		AxisCancelMode GetModeFromName(const std::string& name) const;
 		void SetupUDPClient(void);
 		void Update(void);
-		void SendPacket(const Vector3& accel, const Vector3& localVel, const Vector3& worldVel) const;
+		void SendPacket(Vector3& accel, Vector3& localVel, Vector3& worldVel) const;
 
 		//Constructors & destructors
 		AxisCancelProgram(AxisCancelMode operatingMode);
