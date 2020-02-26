@@ -4,6 +4,7 @@
 */
 #pragma once
 #include <windows.h>
+#include <iostream>
 
 namespace PCars
 {
@@ -380,7 +381,7 @@ namespace PCars
 		SharedMemoryClient(void);
 		~SharedMemoryClient(void);
 
-		void BlockUntilDetected(void);
+		void BlockUntilDetected(bool waitingAnimation);
 
 	private:
 		SharedMemoryData::SharedMemory* GetSharedMemory(void) const;

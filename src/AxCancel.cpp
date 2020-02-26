@@ -9,6 +9,9 @@ AMSA3::AxisCancelProgram::AxisCancelProgram(AxisCancelMode operatingMode) : oper
 	//First, set console control callback
 	SetConsoleCtrlHandler(ConsoleControlCallback, TRUE);
 
+	//Set up the local packet so it doesn't blow up later
+	this->packet = new Packet::UDPPacketData();
+
 	//Then, make the UDP client
 	this->SetupUDPClient();
 
@@ -76,14 +79,27 @@ void AMSA3::AxisCancelProgram::SendPacket(Vector3& accel, Vector3& localVel, Vec
 	localVel  *= this->axisScale;
 	worldVel  *= this->axisScale;
 
+	//Add on ms_to_g for accel
+	accel += Vector3(0, MS_TO_G, 0);
+
+	//Swizzle: sX -> sZ, sY -> sX, sZ -> sY
+	accel.Swizzle('z', 'x', 'y');
+	localVel.Swizzle('z', 'x', 'y');
+	worldVel.Swizzle('z', 'x', 'y');
+
 	//Local/world velocity needs to be normalised (200mph is the max)
 	localVel /= (MPH_TO_MS * 200.0f);
 	worldVel /= (MPH_TO_MS * 200.0f);
+
+	//Set the packet to use local values because whatever
+	packet->useLocalVals = true;
 
 	//Copy all components
 	memcpy(packet->localVel,   &localVel.data, sizeof(float) * 3);
 	memcpy(packet->globalVel,  &worldVel.data, sizeof(float) * 3);
 	memcpy(packet->localAccel, &accel.data,    sizeof(float) * 3);
+
+	Util::Log("accel = (%.2f, %.2f, %.2f)\n", accel.data.x, accel.data.y, accel.data.z);
 
 	//Return a copy of the packet
 	udpClient->sendData(packet);

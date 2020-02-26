@@ -15,6 +15,8 @@ namespace PCars
 
 		SharedMemoryClient* memory;
 
+		void BlockUntilMemoryDetected(void);
+
 		Vector3 GetLocalVelocity(void) const;
 		Vector3 GetLocalAccel(void) const;
 		Vector3 GetWorldVelocity(void) const;

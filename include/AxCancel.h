@@ -32,6 +32,7 @@ namespace AMSA3
 		AxisCancelMode operatingMode;
 		bool running = true;
 		Packet::UDPPacketData* packet;
+		PCars::PCarsGame* projectCars;
 
 		//Public methods
 		AxisCancelMode GetModeFromName(const std::string& name) const;
@@ -47,7 +48,6 @@ namespace AMSA3
 	private:
 		//vars
 		Network::UDPClient* udpClient;
-		PCars::PCarsGame* projectCars;
 
 		static const char* TELEMETRY_WRITER_EXE_NAME;
 		static constexpr float MPH_TO_MS = 0.44704f;

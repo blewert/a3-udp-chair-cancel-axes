@@ -7,15 +7,17 @@ void main(void)
 	//Create a new axis cancel program
 	AxisCancelProgram* program = new AxisCancelProgram("none");
 
-	Vector3 a(1, 0, 1);
-	Vector3 b(0, 1, 0);
-	a = (a - b) * 2;
+	//Log out that we're gonna block until project cars 2 is found.
+	Util::Log("Created program. Blocking until Project CARS 2 is found.  ");
+
+	//Now, block until PCars2 is detected
+	program->projectCars->BlockUntilMemoryDetected();
+
+	//Log out that we've found project cars 2
+	Util::Log("Project CARS 2 found!\n");
 
 	while (program->running)
-		program->Update();
-	
-	printf("%f %f %f", a.data.x, a.data.y, a.data.z);
-
+		program->Update();	
 
 	//Delete it 
 	delete program;

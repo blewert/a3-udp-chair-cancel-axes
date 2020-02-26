@@ -10,9 +10,29 @@ SharedMemoryClient::~SharedMemoryClient(void)
 {
 }
 
-void SharedMemoryClient::BlockUntilDetected(void)
+void SharedMemoryClient::BlockUntilDetected(bool waitingAnimation)
 {
-	while ((this->game = this->GetSharedMemory()) == NULL);
+	if (!waitingAnimation)
+	{
+		while ((this->game = this->GetSharedMemory()) == NULL);
+	}
+	else
+	{
+		const int delay = 100;
+		while ((this->game = this->GetSharedMemory()) == NULL)
+		{
+			Sleep(delay);
+			std::cout << "\b\\" << std::flush;
+			Sleep(delay);
+			std::cout << "\b|" << std::flush;
+			Sleep(delay);
+			std::cout << "\b/" << std::flush;
+			Sleep(delay);
+			std::cout << "\b-" << std::flush;
+		}
+
+		std::cout << std::endl;
+	}
 }
 
 SharedMemoryData::SharedMemory* PCars::SharedMemoryClient::GetSharedMemory(void) const

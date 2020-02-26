@@ -7,9 +7,6 @@ PCars::PCarsGame::PCarsGame(void)
 {
 	//Create the shared memory client
 	memory = new SharedMemoryClient();
-
-	//Block until the game is detected
-	memory->BlockUntilDetected();
 }
 
 PCars::PCarsGame::~PCarsGame(void)
@@ -17,7 +14,13 @@ PCars::PCarsGame::~PCarsGame(void)
 	delete memory;
 }
 
-Vector3 PCars::PCarsGame::GetLocalVelocity(void) const 
+void PCars::PCarsGame::BlockUntilMemoryDetected(void)
+{
+	//Just call memory->blockUntil...()
+	this->memory->BlockUntilDetected(true);
+}
+
+Vector3 PCars::PCarsGame::GetLocalVelocity(void) const
 {
 	return Vector3(memory->game->mLocalVelocity[0], memory->game->mLocalVelocity[1], memory->game->mLocalVelocity[2]);
 }

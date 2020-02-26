@@ -13,6 +13,36 @@ AMSA3::Math::Vector3::Vector3(float x)                   : data({ x, x, x }) { }
 AMSA3::Math::Vector3::Vector3(float x, float y)          : data({ x, y, 0 }) { }
 AMSA3::Math::Vector3::Vector3(float x, float y, float z) : data({ x, y, z }) { }
 
+
+float* AMSA3::Math::Vector3::GetAddressFromChar(const char dest) const
+{
+	if      (dest == 'x') return (float*)(&data.x);
+	else if (dest == 'y') return (float*)(&data.y);
+	else if (dest == 'z') return (float*)(&data.z);
+	else return nullptr;
+}
+
+float AMSA3::Math::Vector3::GetValueFromChar(const char dest) const
+{
+	return *this->GetAddressFromChar(dest);
+}
+
+void AMSA3::Math::Vector3::Swizzle(const char destX, const char destY, const char destZ)
+{
+	//A temporary vec3
+	Vector3 temp(0, 0, 0);
+
+	//Set the x, y, z of the temp to swizzled dests
+	temp.data.x = this->GetValueFromChar(destX);
+	temp.data.y = this->GetValueFromChar(destY);
+	temp.data.z = this->GetValueFromChar(destZ);
+
+	//Set this data to temp data
+	this->data.x = temp.data.x;
+	this->data.y = temp.data.y;
+	this->data.z = temp.data.z;
+}
+
 Vector3 AMSA3::Math::Vector3::operator*(const float rhs) const
 {
 	return Vector3(this->data.x * rhs, this->data.y * rhs, this->data.z * rhs);

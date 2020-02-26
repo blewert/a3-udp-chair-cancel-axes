@@ -18,6 +18,9 @@ namespace AMSA3
 			} vec3_data;
 #pragma pack(pop)
 
+			float* GetAddressFromChar(const char dest) const;
+			float GetValueFromChar(const char dest) const;
+
 		public:
 			vec3_data data;
 
@@ -25,6 +28,8 @@ namespace AMSA3
 			Vector3(float x);
 			Vector3(float x, float y);
 			Vector3(float x, float y, float z);
+
+			void Swizzle(const char destX, const char destY, const char destZ);
 
 			Vector3 operator*(const float rhs) const;
 			Vector3 operator*(const Vector3& rhs) const;

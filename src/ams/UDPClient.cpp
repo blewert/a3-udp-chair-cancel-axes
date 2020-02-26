@@ -60,8 +60,14 @@ void UDPClient::InitialiseWinsock(void)
 	hints.ai_socktype = SOCK_DGRAM;
 	hints.ai_protocol = IPPROTO_UDP;
 
+	//Port string
+	char portString[16];
+
+	//Format into port string
+	sprintf_s(portString, 16, "%d", this->port);
+
 	//Get the address info
-	result = getaddrinfo(this->ip.c_str(), &(*std::to_string(this->port).c_str()), &hints, &addrResult);
+	result = getaddrinfo(this->ip.c_str(), portString, &hints, &addrResult);
 
 	//failed? don't continue
 	if (result != 0)
@@ -102,8 +108,23 @@ void UDPClient::InitialiseWinsock(void)
 	//Free address info up
 	freeaddrinfo(addrResult);
 
+	//Can't create a socket? DIEEEEE
+	if (this->sock == INVALID_SOCKET)
+		throw new std::exception("Couldn't create a socket.");
+
 	//Send some initial stuff
-	send(this->sock, "ping", 4, 0);
+	result = send(this->sock, "ping", 4, 0);
+
+	if (result == SOCKET_ERROR)
+	{
+		//Can't send? DIEEE
+		closesocket(this->sock);
+		WSACleanup();
+
+		//Here is the actual death bit
+		throw new std::exception("Couldn't send data over the created socket.");
+	}
+
 }
 
 void AMSA3::Network::UDPClient::sendData(const char* packet, unsigned int length) const
@@ -113,6 +134,8 @@ void AMSA3::Network::UDPClient::sendData(const char* packet, unsigned int length
 
 void AMSA3::Network::UDPClient::sendData(Packet::UDPPacketData* packet) const
 {
+	packet->packetTimeMillis = GetTickCount();
+
 	send(this->sock, (char*)packet, sizeof(Packet::UDPPacketData), 0);
 }
 
