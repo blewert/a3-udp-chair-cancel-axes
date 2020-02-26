@@ -1,10 +1,13 @@
-## cmakelists_template
+## @file   cmakelists for a3-udp-chair-cancel-axes
+## @author Benjamin Williams <bwilliams@lincoln.ac.uk>
 
 # run only on >3.9
 cmake_minimum_required(VERSION 3.9)
 
+set(PROJECT_NAME "A3_UDP_PCARS2_AxCancel")
+
 # project name
-project(A3_UDP_PCARS2_AxCancel VERSION 1.0)
+project(${PROJECT_NAME} VERSION 1.0)
 
 # specify standard cxx standard
 set(CMAKE_CXX_STANDARD 11)
@@ -20,4 +23,23 @@ file(GLOB_RECURSE HEADERS "include/*.h")
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 
 # make a project
-add_executable(A3_UDP_PCARS2_AxCancel ${SOURCES} ${HEADERS})
+add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+
+# put in nuget packages
+set_property(TARGET ${PROJECT_NAME}
+    PROPERTY VS_PACKAGE_REFERENCES "sdl2_2.0.5"
+)
+
+find_program(NUGET nuget)
+
+if(NOT NUGET)
+  message(FATAL "Cannot find nuget command line tool.\nInstall it with e.g. choco install nuget.commandline")
+else()
+  # add_custom_command(TARGET ${PROJECT_NAME}
+		# PRE_BUILD
+		# COMMAND ${NUGET} restore ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.sln
+	# )
+	# execute_process(COMMAND ${NUGET} install sdl2 ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.sln)
+endif()
+
+
