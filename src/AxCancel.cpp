@@ -58,6 +58,10 @@ void AMSA3::AxisCancelProgram::Update(void)
 {
 	if (this->udpClient->NeedsUpdate())
 	{
+		//Project cars is null now? Then the game has been closed...
+		if (projectCars == NULL)
+			return;
+
 		//Player is not ingame? Then skip!
 		if (!projectCars->IsPlayerInGame())
 			return;
@@ -99,7 +103,11 @@ void AMSA3::AxisCancelProgram::SendPacket(Vector3& accel, Vector3& localVel, Vec
 	memcpy(packet->globalVel,  &worldVel.data, sizeof(float) * 3);
 	memcpy(packet->localAccel, &accel.data,    sizeof(float) * 3);
 
+	//Log acceleration
 	Util::Log("accel = (%.2f, %.2f, %.2f)\n", accel.data.x, accel.data.y, accel.data.z);
+
+	if (this->visualiser != NULL)
+		this->visualiser->OnPacketSent(packet);
 
 	//Return a copy of the packet
 	udpClient->sendData(packet);

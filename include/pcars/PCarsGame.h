@@ -21,6 +21,14 @@ namespace PCars
 		Vector3 GetLocalAccel(void) const;
 		Vector3 GetWorldVelocity(void) const;
 
+		std::string GetRaceStateString(void) const;
+		std::string GetGameStateString(void) const;
+		std::string GetSessionStateString(void) const;
+
+		std::string GetCarName(void) const;
+		std::string GetTrackName(void) const;
+		float GetTrackLength(void) const;
+
 		bool IsPlayerInGame(void) const;
 		bool IsPlayerInRaceSession(void) const;
 		bool IsPlayerRacing(void) const;

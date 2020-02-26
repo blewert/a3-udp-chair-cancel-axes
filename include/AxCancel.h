@@ -4,6 +4,7 @@
 #include "ams/AMSPacket.h"
 #include "ams/UDPClient.h"
 #include "pcars/PCarsGame.h"
+#include "gui/AMSgui.h"
 #include "Util.h"
 #include "Vector3.h"
 
@@ -44,6 +45,8 @@ namespace AMSA3
 		AxisCancelProgram(AxisCancelMode operatingMode);
 		AxisCancelProgram(const std::string& operatingMode);
 		~AxisCancelProgram(void);
+
+		GUI::Visualiser* visualiser = NULL;
 
 	private:
 		//vars

@@ -14,8 +14,10 @@
 
 //stuff built on ams
 #include "AxCancel.h"
+#include "gui/AMSgui.h"
 
 //Usings
 using namespace AMSA3;
 using namespace AMSA3::Math;
+//--
 using Vector3 = Math::Vector3;

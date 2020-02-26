@@ -22,24 +22,27 @@ file(GLOB_RECURSE HEADERS "include/*.h")
 # add source files 
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 
+# copy assets folder to build
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/assets/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/assets/)
+
 # make a project
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
-# put in nuget packages
+# put in sdl nuget packages
 set_property(TARGET ${PROJECT_NAME}
     PROPERTY VS_PACKAGE_REFERENCES "sdl2_2.0.5"
+	PROPERTY VS_PACKAGE_REFERENCES "sdl2_ttf.nuget_"
 )
 
-find_program(NUGET nuget)
+# Find nuget
+# find_program(NUGET nuget)
 
-if(NOT NUGET)
-  message(FATAL "Cannot find nuget command line tool.\nInstall it with e.g. choco install nuget.commandline")
-else()
-  # add_custom_command(TARGET ${PROJECT_NAME}
-		# PRE_BUILD
-		# COMMAND ${NUGET} restore ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.sln
-	# )
-	# execute_process(COMMAND ${NUGET} install sdl2 ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.sln)
-endif()
+# if(NOT NUGET)
+	# # error
+	# message(FATAL "Cannot find nuget command line tool.")
+# else()
+	# # call restore
+	# execute_process(COMMAND ${NUGET} restore ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.sln)
+# endif()
 
 
