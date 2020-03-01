@@ -13,7 +13,7 @@ namespace PCars
 		PCarsGame(void);
 		~PCarsGame(void);
 
-		SharedMemoryClient* memory;
+		SharedMemoryClient* memory = NULL;
 
 		void BlockUntilMemoryDetected(void);
 

@@ -58,6 +58,12 @@ void AMSA3::AxisCancelProgram::Update(void)
 {
 	if (this->udpClient->NeedsUpdate())
 	{
+		if (testMode)
+		{
+			this->SendTestData();
+			return;
+		}
+
 		//Project cars is null now? Then the game has been closed...
 		if (projectCars == NULL)
 			return;
@@ -74,6 +80,29 @@ void AMSA3::AxisCancelProgram::Update(void)
 		//Build the packet, send it
 		this->SendPacket(accel, lvel, wvel);
 	}
+}
+
+void AMSA3::AxisCancelProgram::SetTestMode(void)
+{
+	this->testMode = true;
+}
+
+void AMSA3::AxisCancelProgram::SendTestData(void)
+{
+	float t = SDL_GetTicks() * 0.0174533f;
+
+	float d = abs(sinf(t / 30));
+
+	float fx = sinf(t) * d;
+	float fy = cosf(t) * d;
+
+	//Get vector of each
+	Vector3 accel = Vector3(fy, 0, fx);
+	Vector3 lvel = accel;
+	Vector3 wvel = accel;
+
+	//Build the packet, send it
+	this->SendPacket(accel, lvel, wvel);
 }
 
 void AMSA3::AxisCancelProgram::SendPacket(Vector3& accel, Vector3& localVel, Vector3& worldVel) const

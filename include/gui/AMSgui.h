@@ -34,6 +34,25 @@ namespace AMSA3
 
 		void RenderText(const char* text, SDL_Renderer* renderer, TTF_Font* font, int x, int y);
 
+		class PacketHistoryTracer
+		{
+		private:
+			SDL_Renderer* renderer;
+			std::list<Network::Packet::UDPPacketData>* packetQueue;
+
+			unsigned int x = 0;
+			unsigned int y = 0;
+			unsigned int size = 50;
+
+			const unsigned int PACKET_HISTORY_LIMIT = 15;
+
+		public:
+			void PushPacket(Network::Packet::UDPPacketData packet);
+			~PacketHistoryTracer(void);
+			PacketHistoryTracer(unsigned int x, unsigned int y, unsigned int size, SDL_Renderer* renderer);
+			void Render(void) const;
+		};
+
 		class PacketLogBox
 		{
 		private:
@@ -44,6 +63,7 @@ namespace AMSA3
 
 			unsigned int x = 0;
 			unsigned int y = 0;
+
 
 		public:
 			~PacketLogBox(void);
@@ -68,6 +88,7 @@ namespace AMSA3
 			const unsigned int FONT_PT_SIZE = 14;
 
 			PacketLogBox* packetLogBox;
+			PacketHistoryTracer* packetHistoryTracer;
 
 			//The font
 			TTF_Font* font;

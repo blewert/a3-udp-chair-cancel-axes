@@ -14,11 +14,18 @@ AMSA3::GUI::Visualiser::Visualiser(PCars::PCarsGame* game) : game(game)
 	//Create the renderer
 	this->renderer = SDL_CreateRenderer(this->window, -1, SDL_RENDERER_ACCELERATED);
 
+
+
 	//Create the packet log box
 	this->packetLogBox = new PacketLogBox(this->window, this->renderer, 10);
 
 	//Set the position
 	this->packetLogBox->SetPosition(10, 50);
+
+
+	//Create a tracer
+	this->packetHistoryTracer = new PacketHistoryTracer(600, 150, 100, renderer);
+
 
 	//Set SDL render hints
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
@@ -65,11 +72,15 @@ void AMSA3::GUI::Visualiser::Render(void) const
 	SDL_SetRenderDrawColor(this->renderer, 0xff, 0xff, 0xff, 0xff);
 	this->packetLogBox->Render(this->font, 12);
 
+	//Draw stuff -- packet history in yellow?
+	SDL_SetRenderDrawColor(this->renderer, 0xff, 0xff, 0x0, 0xff);
+	this->packetHistoryTracer->Render();
+
 	//Initiallly, this is just the default message
 	std::string strCar = "Project CARS not detected!";
 	std::string strGameState = "N/A";
 		
-	if (game != NULL)
+	if (game == NULL && game->memory->game != NULL)
 	{
 		strCar = string_format("%s on %s (%.2fm)", game->GetCarName().c_str(), game->GetTrackName().c_str(), game->GetTrackLength());
 		
@@ -98,6 +109,7 @@ void AMSA3::GUI::Visualiser::Update(void) const
 void AMSA3::GUI::Visualiser::OnPacketSent(const Network::Packet::UDPPacketData* packet) const
 {
 	this->packetLogBox->PushPacket(packet);
+	this->packetHistoryTracer->PushPacket(*packet);
 }
 
 
@@ -190,4 +202,68 @@ void AMSA3::GUI::RenderText(const char* text, SDL_Renderer* renderer, TTF_Font* 
 	//Then clean up
 	SDL_FreeSurface(surf);
 	SDL_DestroyTexture(tex);
+}
+
+void AMSA3::GUI::PacketHistoryTracer::Render(void) const
+{
+	Math::Vector3 lastPoint = Math::Vector3(this->x, this->y, 0);
+	Math::Vector3 firstPoint = Math::Vector3(this->x, this->y, 0);
+
+	SDL_Color col;
+	SDL_GetRenderDrawColor(this->renderer, &col.r, &col.g, &col.b, &col.a);
+
+	int i = 0;
+
+	int ox = this->x;
+	int oy = this->y;
+
+	for (std::list<Network::Packet::UDPPacketData>::iterator& it = packetQueue->begin(); it != packetQueue->end(); it++)
+	{
+		float m = size / 2;
+
+		float cx = (*it).localAccel[0] * m;
+		float cy = (*it).localAccel[1] * m;
+
+		float lum = 255 - i / (float)PACKET_HISTORY_LIMIT;
+		SDL_SetRenderDrawColor(renderer, col.r * lum, col.g * lum, col.b * lum, col.a * lum);
+
+		if (i > 0)
+			SDL_RenderDrawLine(renderer, ox + lastPoint.data.x, oy + lastPoint.data.y, ox + cx, oy + cy);
+		else
+			firstPoint = Math::Vector3(cx, cy, 0);
+
+		lastPoint.data.x = cx;
+		lastPoint.data.y = cy;
+
+		i++;
+	}
+
+	SDL_Rect r = { ox + firstPoint.data.x - 2.5f, oy + firstPoint.data.y - 2.5f, 5, 5 };
+	SDL_SetRenderDrawColor(renderer, 0xff, 0xff, 0xff, 0xff);
+	SDL_RenderFillRect(renderer, &r);
+	SDL_RenderDrawLine(renderer, ox, oy, r.x, r.y);
+	
+	float lum = 0.2f;
+	SDL_SetRenderDrawColor(renderer, col.r * lum, col.g * lum, col.b * lum, col.a * lum);
+
+	SDL_RenderDrawLine(renderer, x, y - size / 2, x, y + size / 2);
+	SDL_RenderDrawLine(renderer, x - size / 2, y, x + size / 2, y);
+}
+
+void AMSA3::GUI::PacketHistoryTracer::PushPacket(Network::Packet::UDPPacketData packet)
+{
+	packetQueue->push_front(packet);
+
+	if (packetQueue->size() > PACKET_HISTORY_LIMIT)
+		packetQueue->pop_back();
+}
+
+AMSA3::GUI::PacketHistoryTracer::~PacketHistoryTracer(void)
+{
+	delete packetQueue;
+}
+
+AMSA3::GUI::PacketHistoryTracer::PacketHistoryTracer(unsigned int x, unsigned int y, unsigned int size, SDL_Renderer* renderer) : x(x), y(y), renderer(renderer), size(size)
+{
+	this->packetQueue = new std::list<Network::Packet::UDPPacketData>();
 }

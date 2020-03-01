@@ -39,6 +39,8 @@ namespace AMSA3
 		AxisCancelMode GetModeFromName(const std::string& name) const;
 		void SetupUDPClient(void);
 		void Update(void);
+		void SetTestMode(void);
+		void SendTestData(void);
 		void SendPacket(Vector3& accel, Vector3& localVel, Vector3& worldVel) const;
 
 		//Constructors & destructors
@@ -52,6 +54,7 @@ namespace AMSA3
 		//vars
 		Network::UDPClient* udpClient;
 
+		bool testMode = false;
 		static const char* TELEMETRY_WRITER_EXE_NAME;
 		static constexpr float MPH_TO_MS = 0.44704f;
 		static constexpr float MS_TO_G   = 0.101972f;
